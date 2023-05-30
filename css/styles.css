@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(
+    to right,
+    rgb(107, 33, 168),
+    rgb(76, 29, 149),
+    rgb(107, 33, 168)
+  );
+}
+h1,
+h2,
+a,
+button,
+.btnComprar {
+  font-family: "Mukta", sans-serif;
+}
+
+header .btnLogin {
+  border: 1px solid #000;
+}
+
+header .btnRegister,
+form .btn-login,
+.btnComprar {
+  color: #ffff;
+  background-color: #7b2cbf;
+}
+
+.dropdown-item:focus {
+  color: #000;
+  background-color: white;
+}
+
+form .btn-login:hover,
+header .btnLogin:hover,
+header .btnRegister:hover,
+.btnComprar:hover {
+  color: #ffff;
+  background-color: #3c096c;
+}
+
+form input:focus {
+  border-color: #3c096c !important;
+  box-shadow: 0 0 0 0.2rem #7b2cbf !important;
+}
+
+footer {
+  margin-top: auto;
+}
