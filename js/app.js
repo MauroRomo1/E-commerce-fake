@@ -6,15 +6,16 @@ let productsEdit = [...products];
 
 const userLogueado = JSON.parse(localStorage.getItem("userLogueado")) || null;
 const productsContainer = document.querySelector("#productsContainer");
+const searchInput = document.querySelector("#searchInput");
 const contendorCategorias = document.querySelector("#contendorCategorias");
 const ordenProductos = document.querySelector("#ordenProductos");
 
-const categories = Array.from(
-  new Set(products.map((product) => product.category))
-);
-
 verificarUser(userLogueado);
 cargarProductos(products, productsContainer);
+
+const category = Array.from(
+  new Set(products.map((product) => product.category))
+);
 
 const cargarCategorias = (categorias) => {
   categorias.forEach((categoria) => {
@@ -24,8 +25,19 @@ const cargarCategorias = (categorias) => {
     contendorCategorias.appendChild(option);
   });
 };
+cargarCategorias(category);
 
-cargarCategorias(categories);
+const searchProduct = () => {
+  products = productsEdit.filter((producto) =>
+    producto.title.toLowerCase().includes(searchInput.value.toLowerCase())
+  );
+  console.log(products);
+  cargarProductos(products, productsContainer);
+};
+
+searchInput.addEventListener("input", () => {
+  searchProduct(products);
+});
 
 ordenProductos.addEventListener("input", (e) => {
   if (e.target.value === "todos") {
