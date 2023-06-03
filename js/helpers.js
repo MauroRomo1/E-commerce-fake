@@ -65,13 +65,13 @@ export function mostrarProductos(productos) {
 
   if (productos.length === 0) {
     const mensajeElement = document.createElement("h2");
-    mensajeElement.classList.add("text-center", "text-muted");
-    mensajeElement.textContent = "Productos no encontrados";
+    mensajeElement.classList.add("text-center", "text-white");
+    mensajeElement.textContent = "Productos no encontrados 🤯";
     productosContainer.appendChild(mensajeElement);
   } else {
     productos.forEach((producto) => {
       const productoElement = document.createElement("article");
-      productoElement.classList.add("col");
+      productoElement.classList.add("col", "card-producto");
       productoElement.innerHTML = `
         <div class="card h-100">
           <h6 class="pt-2 px-2">
@@ -79,8 +79,8 @@ export function mostrarProductos(productos) {
              producto.category
            )}">${producto.category}</span>
           </h6>
-          <img src="${producto.image}" style="height: 250px"
-          class="card-img-top object-fit-contain pt-2 px-2" alt="${
+          <img src="${producto.image}"
+          class="img-producto card-img-top object-fit-contain pt-2 px-2" alt="${
             producto.title
           }">
           <div class="card-body">

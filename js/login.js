@@ -26,7 +26,16 @@
 // ];
 // localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
+  {
+    id: 1,
+    nombre: "nombreEjemplo",
+    apellido: "apellidoEjemplo",
+    edad: 23,
+    email: "correoEjeomplo@ejemplo.com",
+    password: "ejemplo123456",
+  },
+];
 
 const formLogin = document.querySelector("#login");
 const userEmail = document.querySelector("#userEmail");
