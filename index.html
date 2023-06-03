@@ -59,50 +59,49 @@
       </nav>
     </header>
     <main>
-      <section class="container my-4" id="searchAndFilters">
+      <section class="container my-5">
         <div class="row">
-          <div class="col">
-            <h2 class="text-white text-center">Buscardor y filtros</h2>
-            <form>
-              <div class="input-group mb-3">
-                <input
-                  type="search"
-                  class="form-control"
-                  id="searchInput"
-                  placeholder="Buscar..."
-                  aria-describedby="search"
-                  required
-                />
-                <button class="btn btn-secondary" type="submit">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row gap-2 justify-content-between">
-          <div class="col-12 col-md-4 col-lg-3">
-            <select class="form-select" id="contendorCategorias">
-              <option disabled selected hidden>Categorias:</option>
+          <div class="col-md-6 col-lg-4 text-white">
+            <label for="selectCategoria" class="form-label">Categoría:</label>
+            <select id="selectCategoria" class="form-select">
+              <option value="todas">Todas</option>
             </select>
           </div>
-          <div class="col-12 col-md-3">
-            <select class="form-select" id="ordenProductos">
-              <option disabled selected hidden>Ordenar por:</option>
-              <option value="todos">Todos</option>
-              <option value="mayorPrecio">Mayor precio</option>
-              <option value="MenorPrecio">Menor precio</option>
+          <div class="col-md-6 col-lg-4 text-white">
+            <label for="selectOrden" class="form-label">Orden por:</label>
+            <select id="selectOrden" class="form-select">
+              <option value="todos" selected>Todos</option>
+              <option value="mayor-menor">Mayor a menor precio</option>
+              <option value="menor-mayor">Menor a mayor precio</option>
             </select>
           </div>
+          <div class="col-lg-4 text-white">
+            <label for="inputBusqueda" class="form-label"
+              >Buscar por nombre:</label
+            >
+            <input
+              type="search"
+              id="inputBusqueda"
+              class="form-control"
+              placeholder="Buscar..."
+            />
+          </div>
         </div>
-      </section>
 
-      <section class="container my-4">
-        <h2 class="text-white text-center">Productos Fakes</h2>
-        <div
-          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"
-          id="productsContainer"
-        ></div>
+        <div class="row mt-4">
+          <div class="col">
+            <div
+              id="productosContainer"
+              class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"
+            >
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border text-light" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <footer class="bg-light">

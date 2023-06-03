@@ -6,6 +6,7 @@ const deslogueo = () => {
     location.reload();
   }
 };
+
 export const verificarUser = (user) => {
   if (user) {
     const contenedorLoginRegist = document.querySelector(
@@ -59,39 +60,43 @@ const pillTheme = (category) => {
   }
 };
 
-export const cargarProductos = (productos, contenedor) => {
-  contenedor.innerHTML = "";
-  productos.forEach((producto) => {
-    const col = document.createElement("div");
-    col.classList.add("col");
-    col.innerHTML = `
-        <article class="card h-100">
-              <h6 class="pt-2 px-2">
-              <span class="badge rounded-pill text-bg-${pillTheme(
-                producto.category
-              )}">
-              ${producto.category}
-              </span>
-              </h6>
-                <img
-                  src=${producto.image}
-                  class="object-fit-contain pt-2 px-2"
-                  alt="${producto.title}"
-                  style="height: 250px"
-                />
-                <div class="card-body">
-                  <h6 class="card-title">${producto.title}</h6>
-                  </div>
-                  <div class="card-footer d-grid mx-auto bg-white border-0">
-                  <h4 class="card-text text-center text-success">
-                  <b>$${producto.price}</b>
-                  </h4>
-                <a class="btn btnComprar" href="../pages/product.html?id=${
-                  producto.id
-                }">Ver más</a>
-                </div>
-        </article>
+export function mostrarProductos(productos) {
+  productosContainer.innerHTML = "";
+
+  if (productos.length === 0) {
+    const mensajeElement = document.createElement("h2");
+    mensajeElement.classList.add("text-center", "text-muted");
+    mensajeElement.textContent = "Productos no encontrados";
+    productosContainer.appendChild(mensajeElement);
+  } else {
+    productos.forEach((producto) => {
+      const productoElement = document.createElement("article");
+      productoElement.classList.add("col");
+      productoElement.innerHTML = `
+        <div class="card h-100">
+          <h6 class="pt-2 px-2">
+           <span class="badge rounded-pill text-bg-${pillTheme(
+             producto.category
+           )}">${producto.category}</span>
+          </h6>
+          <img src="${producto.image}" style="height: 250px"
+          class="card-img-top object-fit-contain pt-2 px-2" alt="${
+            producto.title
+          }">
+          <div class="card-body">
+            <h5 class="card-title">${producto.title}</h5>
+          </div>
+          <div class="card-footer d-grid mx-auto bg-white border-0">
+              <h4 class="card-text text-center text-success">
+                <b>$${producto.price}</b>
+              </h4>
+              <a class="btn btnComprar" href="../pages/product.html?id=${
+                producto.id
+              }">Ver más</a>
+          </div>
+        </div>
       `;
-    contenedor.appendChild(col);
-  });
-};
+      productosContainer.appendChild(productoElement);
+    });
+  }
+}

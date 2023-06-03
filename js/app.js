@@ -1,78 +1,59 @@
-import { cargarProductos, verificarUser } from "./helpers.js";
-import { mockData } from "./fetchProducts.js";
-
-let productsEdit = [...mockData];
-localStorage.setItem("ordenProductos", JSON.stringify(""));
+import { verificarUser, mostrarProductos } from "./helpers.js";
+import { productos } from "./fetchProducts.js";
 
 const userLogueado = JSON.parse(localStorage.getItem("userLogueado")) || null;
-const productsContainer = document.querySelector("#productsContainer");
-const searchInput = document.querySelector("#searchInput");
-const contendorCategorias = document.querySelector("#contendorCategorias");
-const ordenProductosSelect = document.querySelector("#ordenProductos");
+
+const selectCategoria = document.getElementById("selectCategoria");
+const selectOrden = document.getElementById("selectOrden");
+const inputBusqueda = document.getElementById("inputBusqueda");
 
 verificarUser(userLogueado);
-cargarProductos(mockData, productsContainer);
 
-const category = Array.from(
-  new Set(mockData.map((product) => product.category))
-);
+const obtenerCategorias = () => {
+  const categoriasUnicas = [
+    ...new Set(productos.map((producto) => producto.category)),
+  ];
+  return categoriasUnicas;
+};
+const categorias = obtenerCategorias();
 
 const cargarCategorias = (categorias) => {
   categorias.forEach((categoria) => {
     const option = document.createElement("option");
-    option.innerText = categoria;
-    option.classList.add("text-capitalize");
     option.value = categoria;
-    contendorCategorias.appendChild(option);
+    option.textContent = categoria;
+    selectCategoria.appendChild(option);
   });
 };
-cargarCategorias(category);
+cargarCategorias(categorias);
 
-const ordenarPorCategoria = (categoriaValue) => {
-  console.log("La categoria es: " + categoriaValue);
-};
+function filtrarProductos() {
+  const categoriaSeleccionada = selectCategoria.value;
+  const ordenSeleccionado = selectOrden.value;
+  const textoBusqueda = inputBusqueda.value.toLowerCase();
 
-const ordenProductos = (ordenValue) => {
-  localStorage.setItem("ordenProductos", JSON.stringify(ordenValue));
-  if (ordenValue === "todos") {
-    productsEdit = mockData.filter((producto) =>
-      producto.title.toLowerCase().includes(searchInput.value.toLowerCase())
-    );
-    cargarProductos(productsEdit, productsContainer);
-  }
-  if (ordenValue === "mayorPrecio") {
-    cargarProductos(
-      productsEdit.sort((a, b) => b.price - a.price),
-      productsContainer
+  let productosFiltrados = productos;
+
+  if (categoriaSeleccionada !== "todas") {
+    productosFiltrados = productosFiltrados.filter(
+      (producto) => producto.category === categoriaSeleccionada
     );
   }
-  if (ordenValue === "MenorPrecio") {
-    cargarProductos(
-      productsEdit.sort((a, b) => a.price - b.price),
-      productsContainer
-    );
-  }
-};
 
-const searchProducts = () => {
-  const orden = JSON.parse(localStorage.getItem("ordenProductos"));
-
-  productsEdit = mockData.filter((producto) =>
-    producto.title.toLowerCase().includes(searchInput.value.toLowerCase())
+  productosFiltrados = productosFiltrados.filter((producto) =>
+    producto.title.toLowerCase().includes(textoBusqueda)
   );
 
-  ordenProductos(orden);
-  cargarProductos(productsEdit, productsContainer);
-};
+  if (ordenSeleccionado === "mayor-menor") {
+    productosFiltrados.sort((a, b) => b.price - a.price);
+  } else if (ordenSeleccionado === "menor-mayor") {
+    productosFiltrados.sort((a, b) => a.price - b.price);
+  }
 
-contendorCategorias.addEventListener("input", (e) => {
-  ordenarPorCategoria(e.target.value);
-});
+  mostrarProductos(productosFiltrados);
+}
+filtrarProductos();
 
-ordenProductosSelect.addEventListener("input", (e) => {
-  ordenProductos(e.target.value);
-});
-
-searchInput.addEventListener("input", () => {
-  searchProducts(mockData);
-});
+selectCategoria.addEventListener("input", filtrarProductos);
+selectOrden.addEventListener("input", filtrarProductos);
+inputBusqueda.addEventListener("input", filtrarProductos);
