@@ -5,7 +5,7 @@ try {
 } catch (error) {
   console.log(error);
 }
-export const Mockdata = data;
+export const mockData = data;
 // export const products = [
 //   {
 //     id: 1,

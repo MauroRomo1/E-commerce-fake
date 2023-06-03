@@ -1,5 +1,5 @@
 import { verificarUser } from "./helpers.js";
-import { Mockdata } from "./fetchProducts.js";
+import { mockData } from "./fetchProducts.js";
 
 const userLogueado = JSON.parse(localStorage.getItem("userLogueado")) || null;
 const containerProduct = document.querySelector("#containerProduct");
@@ -7,7 +7,7 @@ const containerProduct = document.querySelector("#containerProduct");
 verificarUser(userLogueado);
 
 const idProduct = new URL(window.location.href).searchParams.get("id");
-const product = Mockdata.find((data) => data.id === parseInt(idProduct));
+const product = mockData.find((data) => data.id === parseInt(idProduct));
 
 if (product) {
   containerProduct.innerHTML = `
