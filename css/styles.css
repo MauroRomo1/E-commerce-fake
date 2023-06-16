@@ -15,6 +15,7 @@ body {
     rgb(107, 33, 168)
   );
 }
+
 h1,
 h2,
 a,
@@ -28,7 +29,6 @@ header .btnLogin {
 }
 
 header .btnRegister,
-form .btn-login,
 .btnComprar {
   color: #ffff;
   background-color: #7b2cbf;
@@ -39,17 +39,11 @@ form .btn-login,
   background-color: white;
 }
 
-form .btn-login:hover,
 header .btnLogin:hover,
 header .btnRegister:hover,
 .btnComprar:hover {
   color: #ffff;
   background-color: #3c096c;
-}
-
-form input:focus {
-  border-color: #3c096c !important;
-  box-shadow: 0 0 0 0.2rem #7b2cbf !important;
 }
 
 .card-producto:hover {

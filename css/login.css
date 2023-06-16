@@ -1,0 +1,27 @@
+@import url("./styles.css");
+
+.img-login {
+  width: 500px;
+  object-fit: contain;
+}
+
+form .btn-login {
+  color: #ffff;
+  background-color: #7b2cbf;
+}
+
+form .btn-login:hover {
+  color: #ffff;
+  background-color: #3c096c;
+}
+
+form input:focus {
+  border-color: #3c096c !important;
+  box-shadow: 0 0 0 0.2rem #7b2cbf !important;
+}
+
+@media (max-width: 769px) {
+  .img-login {
+    width: 320px;
+  }
+}
