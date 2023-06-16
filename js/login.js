@@ -1,39 +1,21 @@
-// const usuarios = [
-//   {
-//     id: 1,
-//     nombre: "Mauro",
-//     apellido: "Romo",
-//     edad: 23,
-//     email: "mauroromo1999@outlook.com",
-//     password: "mauro123456",
-//   },
-//   {
-//     id: 2,
-//     nombre: "Pablo",
-//     apellido: "Iñigo",
-//     edad: 23,
-//     email: "pabloiñigo@gmail.com",
-//     password: "pablo123456",
-//   },
-//   {
-//     id: 3,
-//     nombre: "Lucas",
-//     apellido: "Trello",
-//     edad: 23,
-//     email: "lucastrello@gmail.com",
-//     password: "lucas123456",
-//   },
-// ];
-// localStorage.setItem("usuarios", JSON.stringify(usuarios));
-
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
   {
     id: 1,
-    nombre: "nombreEjemplo",
-    apellido: "apellidoEjemplo",
+    role: "user",
+    nombre: "Pepeito",
+    apellido: "ApellidoEjemplo",
     edad: 23,
-    email: "correoEjeomplo@ejemplo.com",
-    password: "ejemplo123456",
+    email: "pepitoEjemplo@hotmail.com",
+    password: "pepito123456",
+  },
+  {
+    id: 2,
+    role: "admin",
+    nombre: "Mauro",
+    apellido: "Romo",
+    edad: 23,
+    email: "mauroromo1999@outlook.com",
+    password: "mauro123456",
   },
 ];
 
@@ -42,22 +24,59 @@ const userEmail = document.querySelector("#userEmail");
 const userPassword = document.querySelector("#userPassword");
 const alertError = document.querySelector("#alertError");
 
+const verificarRegexpEmail = (emailValue) => {
+  let resultado = false;
+  if (
+    emailValue.length > 10 &&
+    emailValue.length <= 60 &&
+    emailValue.match(
+      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+    )
+  ) {
+    resultado = true;
+  }
+  return resultado;
+};
+
+const verificarRegexpPassword = (passValue) => {
+  let resultado = false;
+  if (
+    passValue.length > 6 &&
+    passValue.length <= 50 &&
+    passValue.match(/[a-zA-Z0-9]/)
+  ) {
+    resultado = true;
+  }
+  return resultado;
+};
+
 const logueoUser = () => {
   const usuarioEncontrado = usuarios.find(
     (user) =>
       user.email === userEmail.value && user.password === userPassword.value
   );
 
-  if (usuarioEncontrado) {
-    localStorage.setItem("userLogueado", JSON.stringify(usuarioEncontrado));
+  if (
+    verificarRegexpEmail(userEmail.value.toLowerCase()) &&
+    verificarRegexpPassword(userPassword.value) &&
+    usuarioEncontrado
+  ) {
+    alertError.classList.add("d-none");
+    let { id, role, nombre, apellido, edad, email } = usuarioEncontrado;
+    console.log({ id, role, nombre, apellido, edad, email });
+    localStorage.setItem(
+      "userLogueado",
+      JSON.stringify({ id, role, nombre, apellido, edad, email })
+    );
     location.replace("../index.html");
   } else {
     alertError.classList.remove("d-none");
+    userPassword.value = "";
+    userPassword.focus();
   }
 };
 
 formLogin.addEventListener("submit", (e) => {
   e.preventDefault();
-  alertError.classList.add("d-none");
   logueoUser();
 });
