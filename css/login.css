@@ -1,0 +1,38 @@
+@import url("./styles.css");
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  filter: drop-shadow(5px 5px 10px #000);
+}
+
+form .btn-login {
+  color: #ffff;
+  background-color: #7b2cbf;
+}
+
+form .btn-login:disabled {
+  color: #ffff;
+  background-color: #3c096c;
+}
+
+form .btn-login:hover {
+  color: #ffff;
+  background-color: #3c096c;
+}
+
+form input:focus {
+  border-color: #3c096c !important;
+  box-shadow: 0 0 0 0.2rem #7b2cbf !important;
+}
+
+@media (max-width: 426px) {
+  .img-login {
+    width: 320px;
+    height: 250px;
+  }
+}

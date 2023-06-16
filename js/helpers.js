@@ -28,7 +28,11 @@ export const verificarUser = (user) => {
           class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-center"
           >
           <li><a class="dropdown-item" href="#">Ver perfil</a></li>
-          <li><a class="dropdown-item" href="#">Configuracion</a></li>
+          ${
+            user.role === "admin"
+              ? '<li><a class="dropdown-item" href="#">Administración</a></li>'
+              : ' <li><a class="dropdown-item" href="#">Configuracion</a></li>'
+          }
           <li><hr class="dropdown-divider" /></li>
           <li>
           <button class="dropdown-item text-danger" id="btnDeslogueo" type="button">Cerrar sesión</button>
