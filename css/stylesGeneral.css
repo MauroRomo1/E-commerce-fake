@@ -20,14 +20,6 @@ a {
   text-decoration: none;
 }
 
-h1,
-h2,
-a,
-button,
-.btnComprar {
-  font-family: "Mukta", sans-serif;
-}
-
 header .btnLogin {
   border: 1px solid #000;
 }
@@ -48,13 +40,6 @@ header .btnRegister:hover,
 .btnComprar:hover {
   color: #ffff;
   background-color: #3c096c;
-}
-
-.card-producto:hover {
-  filter: drop-shadow(0px 0px 20px #000000);
-}
-.img-producto {
-  height: 250px;
 }
 
 footer {
