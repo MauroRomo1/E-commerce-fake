@@ -1,10 +1,19 @@
 const deslogueo = () => {
-  let seguro = confirm("¿Esta seguro que quiere Cerrar sesión?");
-
-  if (seguro) {
-    localStorage.removeItem("userLogueado");
-    location.reload();
-  }
+  Swal.fire({
+    title: "<h5>¿Seguro que quieres cerrar sesion?</h5>",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3c096c",
+    cancelButtonColor: "#7b2cbf",
+    confirmButtonText: "Si, quiero",
+    cancelButtonText: "No",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      localStorage.removeItem("userLogueado");
+      location.reload();
+    }
+  });
 };
 
 export const verificarUser = (user) => {
