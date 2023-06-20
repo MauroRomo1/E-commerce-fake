@@ -28,7 +28,7 @@ const alertError = document.querySelector("#alertError");
 const verificarRegexpEmail = (emailValue) => {
   let resultado = false;
   if (
-    emailValue.length > 10 &&
+    emailValue.length >= 6 &&
     emailValue.length <= 60 &&
     emailValue.match(
       /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
@@ -42,8 +42,8 @@ const verificarRegexpEmail = (emailValue) => {
 const verificarRegexpPassword = (passValue) => {
   let resultado = false;
   if (
-    passValue.length > 6 &&
-    passValue.length <= 50 &&
+    passValue.length >= 6 &&
+    passValue.length <= 60 &&
     passValue.match(/[a-zA-Z0-9]/)
   ) {
     resultado = true;

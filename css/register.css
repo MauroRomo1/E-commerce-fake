@@ -1,0 +1,30 @@
+@import url("./stylesGeneral.css");
+
+.img-register {
+  object-fit: contain;
+}
+
+.row {
+  filter: drop-shadow(5px 5px 10px #000);
+}
+
+form .btn-register {
+  color: #ffff;
+  background-color: #7b2cbf;
+}
+
+form .btn-register:disabled {
+  color: #ffff;
+  background-color: #3c096c;
+}
+
+form .btn-register:hover {
+  color: #ffff;
+  background-color: #3c096c;
+}
+
+@media (max-width: 769px) {
+  .img-register {
+    width: 320px;
+  }
+}

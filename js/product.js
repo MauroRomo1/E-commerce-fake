@@ -28,7 +28,7 @@ if (producto) {
                     <b>$${producto.price}</b>
                     </h4>
                     <div class="d-grid">
-                    <button class="btn btn-primary bt-lg" type="button">
+                    <button class="btn btnComprar bt-lg" type="button">
                     <i class="fa-solid fa-cart-plus me-2"></i>
                     Sumar al carrito
                     </button>

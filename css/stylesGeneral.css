@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -14,8 +16,11 @@ body {
     rgb(76, 29, 149),
     rgb(107, 33, 168)
   );
+  font-family: "Geologica", sans-serif;
 }
-
+p {
+  font-family: "Ubuntu", sans-serif;
+}
 a {
   text-decoration: none;
 }
