@@ -83,7 +83,6 @@ const crearUsuario = () => {
   let validacion = validarUsuario(inputEmial.trim());
 
   if (!validacion) {
-    console.log("El usuario aun no existe");
     usuarios.push(
       new Usuario(
         inputNombre.trim().toLocaleLowerCase(),
@@ -93,10 +92,27 @@ const crearUsuario = () => {
       )
     );
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    console.log(usuarios);
+    Swal.fire({
+      icon: "success",
+      title: "Usuario logueado",
+      text: "Redirigiendo para iniciar sesión...",
+      showConfirmButton: false,
+      timer: 2500,
+      timerProgressBar: true,
+      didOpen: () => {
+        setTimeout(() => {
+          location.replace("./login.html");
+        }, 2500);
+      },
+    });
   } else {
-    console.log("El usuario ya existe");
-    console.log(usuarios);
+    Swal.fire({
+      icon: "error",
+      title: "El usuario ya existe",
+      text: "Intenta loguearte con los datos corespondientes.",
+      confirmButtonColor: "#7b2cbf",
+      footer: '<a href="#">¿Quieres inicia sesión?</a>',
+    });
   }
 };
 
