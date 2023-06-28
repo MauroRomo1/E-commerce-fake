@@ -66,36 +66,26 @@
     </header>
     <main>
       <section class="container my-5">
-        <div class="table-responsive">
-          <table class="table table-hover table-bordered bg-white">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Correo electronico</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row my-3">
+          <div class="col">
+            <h3 class="text-center text-white">Administracion de usuarios</h3>
+          </div>
+        </div>
+        <div class="row" id="contenedorTabla">
+          <div class="col">
+            <table class="table bg-white">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Email</th>
+                  <th class="text-center" scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpoTabla"></tbody>
+            </table>
+          </div>
         </div>
       </section>
     </main>
@@ -111,5 +101,7 @@
       src="https://kit.fontawesome.com/e23bd1dc39.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../js/admin.js"></script>
   </body>
 </html>

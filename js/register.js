@@ -4,7 +4,8 @@ const inputs = document.querySelectorAll("#formRegistro input");
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
 class Usuario {
-  constructor(nombre, apellido, email, password) {
+  constructor(id, nombre, apellido, email, password) {
+    this.id = id;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
@@ -75,6 +76,7 @@ const validarConfirmPassword = () => {
 };
 
 const crearUsuario = () => {
+  const id = new Date().getTime();
   const inputNombre = document.getElementById("nombre").value;
   const inputApellido = document.getElementById("apellido").value;
   const inputEmial = document.getElementById("email").value;
@@ -85,6 +87,7 @@ const crearUsuario = () => {
   if (!validacion) {
     usuarios.push(
       new Usuario(
+        id,
         inputNombre.trim().toLocaleLowerCase(),
         inputApellido.trim().toLocaleLowerCase(),
         inputEmial.trim(),
