@@ -1,12 +1,25 @@
 const contenedorTabla = document.getElementById("contenedorTabla");
 const cuerpoTabla = document.getElementById("cuerpoTabla");
+const containerUpdateUser = document.querySelector("#containerUpdateUser");
 
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+const updateUserModal = new bootstrap.Modal(
+  document.getElementById("updateUserModal")
+);
 
 const eliminarUsuario = (index) => {
   usuarios.splice(index, 1);
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
   cargarTablaUsers();
+};
+
+const actulizarDatosUser = (index) => {
+  console.log(index);
+  updateUserModal.show();
+  // containerUpdateUser.innerHTML = "";
+  // const form = document.createElement("form");
+  // const contenidoUpdateUser = /* HTML */ ``
 };
 
 const cargarTablaUsers = () => {
@@ -21,6 +34,7 @@ const cargarTablaUsers = () => {
           <td>${usuario.nombre}</td>
           <td>${usuario.apellido}</td>
           <td>${usuario.email}</td>
+          <td>${usuario.rol}</td>
           <td class="d-grid gap-2 d-md-flex justify-content-around">
             <button
               type="button"
@@ -34,7 +48,7 @@ const cargarTablaUsers = () => {
               type="button"
               title="Editar usuario"
               class="btn btn-primary"
-              id="editUser"
+              id="btnEditUser"
             >
               <i class="fa-solid fa-user-pen "></i>
             </button>
@@ -44,6 +58,10 @@ const cargarTablaUsers = () => {
 
       fila.querySelector("#btnElimnarUser").addEventListener("click", () => {
         eliminarUsuario(index);
+      });
+
+      fila.querySelector("#btnEditUser").addEventListener("click", () => {
+        actulizarDatosUser(index);
       });
     });
   } else {

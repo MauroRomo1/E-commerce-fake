@@ -4,12 +4,13 @@ const inputs = document.querySelectorAll("#formRegistro input");
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
 class Usuario {
-  constructor(id, nombre, apellido, email, password) {
+  constructor(id, nombre, apellido, email, password, rol = "Usuario") {
     this.id = id;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
     this.password = password;
+    this.rol = rol;
   }
 }
 
