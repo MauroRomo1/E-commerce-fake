@@ -98,7 +98,7 @@ const crearUsuario = () => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     Swal.fire({
       icon: "success",
-      title: "Usuario logueado",
+      title: "Usuario registrado con exito",
       text: "Redirigiendo para iniciar sesión...",
       showConfirmButton: false,
       timer: 2500,
