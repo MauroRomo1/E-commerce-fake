@@ -1,23 +1,4 @@
-const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [
-  {
-    id: 1,
-    role: "user",
-    nombre: "Pepeito",
-    apellido: "ApellidoEjemplo",
-    edad: 23,
-    email: "pepitoEjemplo@hotmail.com",
-    password: "pepito123456",
-  },
-  {
-    id: 2,
-    role: "admin",
-    nombre: "Mauro",
-    apellido: "Romo",
-    edad: 23,
-    email: "mauroromo1999@outlook.com",
-    password: "mauro123456",
-  },
-];
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
 const formLogin = document.querySelector("#login");
 const loginBtn = document.querySelector("#loginBtn");
@@ -63,10 +44,10 @@ const logueoUser = () => {
     usuarioEncontrado
   ) {
     alertError.classList.add("d-none");
-    let { id, role, nombre, apellido, edad, email } = usuarioEncontrado;
+    let { id, rol, nombre, apellido, edad, email } = usuarioEncontrado;
     localStorage.setItem(
       "userLogueado",
-      JSON.stringify({ id, role, nombre, apellido, edad, email })
+      JSON.stringify({ id, rol, nombre, apellido, edad, email })
     );
     loginBtn.setAttribute("disabled", "");
     loginBtn.innerHTML =

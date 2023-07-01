@@ -4,11 +4,13 @@ const inputs = document.querySelectorAll("#formRegistro input");
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
 class Usuario {
-  constructor(nombre, apellido, email, password) {
+  constructor(id, nombre, apellido, email, password, rol = "Usuario") {
+    this.id = id;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
     this.password = password;
+    this.rol = rol;
   }
 }
 
@@ -75,6 +77,7 @@ const validarConfirmPassword = () => {
 };
 
 const crearUsuario = () => {
+  const id = new Date().getTime();
   const inputNombre = document.getElementById("nombre").value;
   const inputApellido = document.getElementById("apellido").value;
   const inputEmial = document.getElementById("email").value;
@@ -85,6 +88,7 @@ const crearUsuario = () => {
   if (!validacion) {
     usuarios.push(
       new Usuario(
+        id,
         inputNombre.trim().toLocaleLowerCase(),
         inputApellido.trim().toLocaleLowerCase(),
         inputEmial.trim(),
@@ -94,7 +98,7 @@ const crearUsuario = () => {
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     Swal.fire({
       icon: "success",
-      title: "Usuario logueado",
+      title: "Usuario registrado con exito",
       text: "Redirigiendo para iniciar sesión...",
       showConfirmButton: false,
       timer: 2500,
