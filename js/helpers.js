@@ -38,7 +38,7 @@ export const verificarUser = (user) => {
           >
           <li><a class="dropdown-item" href="#">Ver perfil</a></li>
           ${
-            user.role === "admin"
+            user.rol === "Administrador"
               ? '<li><a class="dropdown-item" href="#">Administración</a></li>'
               : ' <li><a class="dropdown-item" href="#">Configuracion</a></li>'
           }
