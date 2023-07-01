@@ -1,4 +1,8 @@
+import { verificarUser } from "./helpers.js";
+
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+const userLogueado = JSON.parse(localStorage.getItem("userLogueado")) || null;
 
 const cuerpoTabla = document.querySelector("#cuerpoTabla");
 const updateUserModal = new bootstrap.Modal(
@@ -49,16 +53,17 @@ const abrirModalUpdateUser = (index) => {
         </select>
       </div>
       <div class="mb-3 d-flex justify-content-end">
-        <button
-          type="button"
-          class="btn btn-primary"
-          onclick="actualizarUsuario(${index})"
-        >
+        <button type="button" class="btn btn-primary" id="btnActualizarUsuario">
           Actualizar
         </button>
       </div>`;
   form.innerHTML = cuerpoForm;
   contenedorForm.append(form);
+
+  form.querySelector("#btnActualizarUsuario").addEventListener("click", () => {
+    actualizarUsuario(index);
+  });
+
   updateUserModal.show();
 };
 
@@ -84,8 +89,8 @@ const actualizarUsuario = (index) => {
 const cargarTabla = () => {
   cuerpoTabla.innerHTML = "";
   usuarios.forEach((usuario, index) => {
-    const fila = document.createElement("tr");
-    const celda =
+    let fila = document.createElement("tr");
+    let celda =
       /* HTML */
       `
         <th scope="row">${usuario.id}</th>
@@ -94,24 +99,26 @@ const cargarTabla = () => {
         <td>${usuario.email}</td>
         <td>${usuario.rol}</td>
         <td class="d-flex gap-1 justify-content-around">
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="abrirModalUpdateUser(${index})"
-          >
+          <button type="button" class="btn btn-primary" id="btnEditUser">
             <i class="fa-solid fa-user-pen"></i>
           </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="eliminarUser(${index})"
-          >
+          <button type="button" class="btn btn-primary" id="btnEliminarUser">
             <i class="fa-solid fa-trash"></i>
           </button>
         </td>
       `;
     fila.innerHTML = celda;
     cuerpoTabla.append(fila);
+
+    fila.querySelector("#btnEditUser").addEventListener("click", () => {
+      abrirModalUpdateUser(index);
+    });
+
+    fila.querySelector("#btnEliminarUser").addEventListener("click", () => {
+      eliminarUser(index);
+    });
   });
 };
+verificarUser(userLogueado);
+
 cargarTabla();
