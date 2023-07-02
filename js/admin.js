@@ -1,14 +1,31 @@
 import { verificarUser } from "./helpers.js";
 
 const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
 const userLogueado = JSON.parse(localStorage.getItem("userLogueado")) || null;
-
 const cuerpoTabla = document.querySelector("#cuerpoTabla");
 const updateUserModal = new bootstrap.Modal(
   document.getElementById("updateUserModal")
 );
 const contenedorForm = document.querySelector("#contenedorForm");
+
+if (!userLogueado || userLogueado.rol !== "Administrador") {
+  console.warn("no tienes permisos para estar en esta pagina.");
+  Swal.fire({
+    icon: "error",
+    title: "<h4>No tienes permisos para estar aquí.</h4>",
+    text: "Redirigiendo a la pagina principal...",
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+    didOpen: () => {
+      setTimeout(() => {
+        location.replace("../index.html");
+      }, 2500);
+    },
+  });
+} else {
+  cargarTabla();
+}
 
 const abrirModalUpdateUser = (index) => {
   contenedorForm.innerHTML = "";
@@ -120,5 +137,3 @@ const cargarTabla = () => {
   });
 };
 verificarUser(userLogueado);
-
-cargarTabla();
