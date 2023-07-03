@@ -36,11 +36,11 @@ export const verificarUser = (user) => {
           <ul
           class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-center"
           >
-          <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+          <li><a class="dropdown-item" href="../pages/error404.html">Ver perfil</a></li>
           ${
             user.rol === "Administrador"
               ? '<li><a class="dropdown-item" href="../pages/admin.html">Administración</a></li>'
-              : ' <li><a class="dropdown-item" href="#">Configuracion</a></li>'
+              : ' <li><a class="dropdown-item" href="../pages/error404.html">Configuracion</a></li>'
           }
           <li><hr class="dropdown-divider" /></li>
           <li>
